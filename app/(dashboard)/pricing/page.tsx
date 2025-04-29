@@ -31,7 +31,7 @@ export default async function PricingPage() {
             'Unlimited Workspace Members',
             'Email Support',
           ]}
-          priceId={basePrice?.id}
+          priceId={basePrice?.id ?? ''}
         />
         <PricingCard
           name={plusPlan?.name || 'Plus'}
@@ -43,7 +43,7 @@ export default async function PricingPage() {
             'Early Access to New Features',
             '24/7 Support + Slack Access',
           ]}
-          priceId={plusPrice?.id}
+          priceId={plusPrice?.id ?? ''}
         />
       </div>
     </main>
@@ -63,20 +63,19 @@ function PricingCard({
   interval: string;
   trialDays: number;
   features: string[];
-  priceId?: string;
+  priceId: string;
 }) {
   return (
     <div className="pt-6">
       <h2 className="text-2xl font-medium text-gray-900 mb-2">{name}</h2>
-      <p className="text-sm text-gray-600 mb-4">
-        with {trialDays} day free trial
-      </p>
+      <p className="text-sm text-gray-600 mb-4">with {trialDays} day free trial</p>
       <p className="text-4xl font-medium text-gray-900 mb-6">
-        ${price / 100}{' '}
+        ₺{price / 100}{' '}
         <span className="text-xl font-normal text-gray-600">
           per user / {interval}
         </span>
       </p>
+
       <ul className="space-y-4 mb-8">
         {features.map((feature, index) => (
           <li key={index} className="flex items-start">
@@ -85,9 +84,12 @@ function PricingCard({
           </li>
         ))}
       </ul>
+
+      {/* Stripe formu hâlâ dursun istersen; PayTR tamamlanınca kaldırabilirsin */}
       <form action={checkoutAction}>
         <input type="hidden" name="priceId" value={priceId} />
-        <SubmitButton />
+        {/* ✅ Gerekli prop'lar ekleniyor */}
+        <SubmitButton planId={priceId} price={price} />
       </form>
     </div>
   );
