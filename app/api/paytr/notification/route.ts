@@ -1,10 +1,12 @@
-import { NextRequest, NextResponse } from 'next/server';
+// app/api/paytr/notification/route.ts
+
+import { NextRequest } from 'next/server';
 import crypto from 'crypto';
 
-export const runtime = 'nodejs'; // Edge Runtime yerine Node.js kullan
+export const runtime = 'nodejs'; // Edge yerine Node.js kullan
 
 export async function POST(req: NextRequest) {
-  // PayTR POST içeriğini al
+  // PayTR’den gelen POST verisini al
   const form = await req.formData();
   const data = Object.fromEntries(form.entries()) as Record<string, string>;
 
@@ -27,6 +29,6 @@ export async function POST(req: NextRequest) {
 
   // TODO: Sipariş kaydını DB’de güncelle (ileride eklenecek)
 
-  // PayTR'ye “OK” cevabı
-  return NextResponse.text('OK');
+  // PayTR’ye “OK” cevabı
+  return new Response('OK');
 }
