@@ -182,7 +182,7 @@ export const signUp = validatedAction(signUpSchema, async (data, formData) => {
     // Create a new team if there's no invitation
     const newTeam: NewTeam = {
       name: `${email}'s Team`,
-       ownerId: createdUser.id      // 🛠️ NOT NULL kolonu için zorunlu
+       owner_id: createdUser.id      // ✅ Drizzle şemasıyla aynı
     };
 
     [createdTeam] = await db.insert(teams).values(newTeam).returning();
