@@ -27,21 +27,13 @@ import {
 } from '@/lib/auth/middleware';
 
 async function logActivity(
-  teamId: number | null | undefined,
-  userId: number,
-  type: ActivityType,
-  ipAddress?: string
+  _teamId: number | null | undefined,
+  _userId: number,
+  _type: ActivityType,
+  _ipAddress?: string
 ) {
-  if (teamId === null || teamId === undefined) {
-    return;
-  }
-  const newActivity: NewActivityLog = {
-    teamId,
-    userId,
-    action: type,
-    ipAddress: ipAddress || ''
-  };
-  await db.insert(activityLogs).values(newActivity);
+  /*  ── Geçici olarak devre-dışı ───────────────────────── */
+  return;           // <-- LOG YOK, DB INSERT YOK
 }
 
 const signInSchema = z.object({
