@@ -61,6 +61,7 @@ async function seed() {
     .insert(teams)
     .values({
       name: 'Test Team',
+      owner_id: user.id        // 👈 seed’te oluşturduğun kullanıcıyı koy
     })
     .returning();
 
