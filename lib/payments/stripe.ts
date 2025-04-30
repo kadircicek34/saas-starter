@@ -20,26 +20,25 @@ export type StripePrice = {
 
 /* ---------- Ürün / Fiyat sorguları ---------- */
 export async function getStripeProducts(): Promise<StripeProduct[]> {
-  // Stripe devre dışı → boş liste
-  return [];
+  return []; // Stripe devre dışı
 }
 
 export async function getStripePrices(): Promise<StripePrice[]> {
-  // Stripe devre dışı → boş liste
-  return [];
+  return []; // Stripe devre dışı
 }
 
 /* ---------- Checkout & Portal STUB ---------- */
-export async function createCheckoutSession() {
+export async function createCheckoutSession(..._args: any[]) {
+  // _args → { team, priceId } vb. olabilir
   throw new Error('Stripe is disabled in this project.');
 }
 
-export async function createCustomerPortalSession() {
+export async function createCustomerPortalSession(..._args: any[]) {
   throw new Error('Stripe is disabled in this project.');
 }
 
 /* ---------- Webhook yardımcıları STUB ---------- */
-export async function handleSubscriptionChange() {
+export async function handleSubscriptionChange(..._args: any[]) {
   /* no-op */
 }
 
