@@ -28,13 +28,20 @@ export async function getStripePrices(): Promise<StripePrice[]> {
 }
 
 /* ---------- Checkout & Portal STUB ---------- */
-export async function createCheckoutSession(..._args: any[]) {
+type RedirectObj = { url: string };
+
+export async function createCheckoutSession(
+  ..._args: any[]
+): Promise<RedirectObj> {
   // _args → { team, priceId } vb. olabilir
-  throw new Error('Stripe is disabled in this project.');
+  // Gerçekte Stripe olmadığından varsayılan bir URL dönüyoruz
+  return { url: '/dashboard' };
 }
 
-export async function createCustomerPortalSession(..._args: any[]) {
-  throw new Error('Stripe is disabled in this project.');
+export async function createCustomerPortalSession(
+  ..._args: any[]
+): Promise<RedirectObj> {
+  return { url: '/dashboard' };
 }
 
 /* ---------- Webhook yardımcıları STUB ---------- */
@@ -43,4 +50,4 @@ export async function handleSubscriptionChange(..._args: any[]) {
 }
 
 /* ---------- Stripe SDK nesnesine sahte export ---------- */
-export const stripe: any = {}; // boş obje, import çakışmasını önler
+export const stripe: any = {}; // Boş obje, import çakışmasını önler
